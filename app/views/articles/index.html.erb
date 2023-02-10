@@ -1,0 +1,38 @@
+
+<div class="container">
+  <h1 class="text-light">Article Information </h1>
+  <table class="table table-hover table-bordered table-dark table-striped text-center">
+    <thead class="thead-dark">  
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr> 
+        <% if @articles.exists? %>
+          <% @articles.each do |article| %>
+
+            <td><%= article.title %> </td>
+            <td><%= article.description %></td> 
+            <td><%= article.user.name %></td> 
+            
+            <td>
+              <%= link_to "Show", article_path(article), class: "btn btn-sm btn-primary"  %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-sm btn-secondary"  %>
+              <%= link_to "delete", article_path(article), class: "btn btn-sm btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure want to delete ?"} %>
+            </td>
+          <% end %>
+        <% else %>
+          <td colspan="4" class="text-center">No articles to show</td>
+        <% end %>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+
